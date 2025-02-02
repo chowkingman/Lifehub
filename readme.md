@@ -73,7 +73,6 @@ cd LifeHub
 📌 Phase 3: Integrate Supabase Auth & API
 📌 Phase 4: Implement Background Fetch & Notifications
 📌 Phase 5: Write Unit & UI Tests
-📌 Phase 6: Deploy to TestFlight & App Store
 
 ---
 
