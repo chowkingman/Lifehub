@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    name: Build and Test using iOS 18.0 Simulator
-    runs-on: macos-14  # Ensure compatibility with Xcode 16.2
+    name: Build and Test using iOS 18.x Simulator
+    runs-on: macos-14  # Ensures Xcode 16.2 compatibility
 
     steps:
       - name: Checkout Repository
@@ -18,7 +18,7 @@ jobs:
       - name: Set Xcode Version
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Install iOS 18.0 Simulator (If Needed)
+      - name: Install iOS 18.x Simulator (If Needed)
         run: sudo xcodebuild -downloadPlatform iOS || echo "Skipping, already installed"
 
       - name: List Available Simulators
@@ -32,24 +32,40 @@ jobs:
           echo "Using default scheme: $default"
           echo $default > default_scheme.txt
 
+      - name: Find iOS 18.x Simulator
+        run: |
+          echo "Looking for an iOS 18.x simulator..."
+          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone [0-9A-Za-z ]+ \([0-9\.]+\)' | grep '18\.' | head -1 | awk -F '[()]' '{print $1}')
+          
+          if [ -z "$device" ]; then
+            echo "❌ No compatible iOS 18.x simulator found! Aborting."
+            exit 1
+          fi
+          
+          echo "✅ Selected Simulator: $device"
+          echo $device > selected_simulator.txt
+          
+          # Ensure the simulator is booted
+          xcrun simctl boot "$device" || echo "Skipping boot if already running"
+
       - name: Build
         env:
           platform: "iOS Simulator"
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*? \([0-9\.]+\)' | grep "18.0" | head -1 | awk -F '[()]' '{print $1}')
+          device=$(cat selected_simulator.txt)
           scheme=$(cat default_scheme.txt)
-          echo "Selected Simulator: $device"
-          if [ -z "$device" ]; then echo "❌ No compatible simulator found!" && exit 1; fi
           file_to_build=$(ls -A | grep -iE '\.xcworkspace$|\.xcodeproj$' | head -1)
+
+          echo "Building for simulator: $device"
           xcodebuild build-for-testing -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,name=$device,OS=18.0" | xcpretty
 
       - name: Test
         env:
           platform: "iOS Simulator"
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*? \([0-9\.]+\)' | grep "18.0" | head -1 | awk -F '[()]' '{print $1}')
+          device=$(cat selected_simulator.txt)
           scheme=$(cat default_scheme.txt)
-          echo "Running tests on: $device"
-          if [ -z "$device" ]; then echo "❌ No compatible simulator found!" && exit 1; fi
           file_to_build=$(ls -A | grep -iE '\.xcworkspace$|\.xcodeproj$' | head -1)
+
+          echo "Running tests on: $device"
           xcodebuild test-without-building -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,name=$device,OS=18.0" | xcpretty
