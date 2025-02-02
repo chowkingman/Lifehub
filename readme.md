@@ -4,6 +4,7 @@ LifeHub is a **multi-functional iOS app** that combines **task management, weath
 It is built using **Swift, SwiftUI, SwiftData, and Supabase**, following best practices in **iOS development, testing, and deployment**.  
 
 🔥 This project has a fully functional GitHub Actions workflow pipeline for automated builds and tests on every push and pull request!
+
 ---
 
 ## 📌 Features  
@@ -58,27 +59,13 @@ LifeHub follows the **MVVM (Model-View-ViewModel)** pattern for separation of co
 - **Swift 5.9+**  
 - **Supabase Account** (for backend)  
 
-### **📌 Installation**  
-
-Clone the repo:  
-```sh
-git clone https://github.com/chowkingman/LifeHub.git
-cd LifeHub
-
 ---
 
-🎯 Roadmap
+## 🎯 Roadmap
 
-📌 Phase 1: Project Setup & GitHub CI/CD ✅
-📌 Phase 2: Build UI & SwiftData Models
-📌 Phase 3: Integrate Supabase Auth & API
-📌 Phase 4: Implement Background Fetch & Notifications
-📌 Phase 5: Write Unit & UI Tests
+### 📌 Phase 1: Project Setup & GitHub CI/CD ✅
+### 📌 Phase 2: Build UI & SwiftData Models
+### 📌 Phase 3: Integrate Supabase Auth & API
+### 📌 Phase 4: Implement Background Fetch & Notifications
+### 📌 Phase 5: Write Unit & UI Tests
 
----
-
-MIT License
-
-Copyright (c) 2025
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software...
