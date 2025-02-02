@@ -3,6 +3,7 @@
 LifeHub is a **multi-functional iOS app** that combines **task management, weather updates, and finance tracking**.  
 It is built using **Swift, SwiftUI, SwiftData, and Supabase**, following best practices in **iOS development, testing, and deployment**.  
 
+🔥 This project has a fully functional GitHub Actions workflow pipeline for automated builds and tests on every push and pull request!
 ---
 
 ## 📌 Features  
