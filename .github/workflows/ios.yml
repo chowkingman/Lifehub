@@ -35,7 +35,7 @@ jobs:
       - name: Select iPhone 16 (iOS 18.2) Simulator
         run: |
           echo "Selecting iPhone 16 with iOS 18.2..."
-          device_id="6931CB3E-634D-434E-8C1F-2F768C466160"
+          device_id="6F846BFB-BC07-430E-9D79-D6C1569E14D9"
 
           if [ -z "$device_id" ]; then
             echo "❌ No compatible iOS 18.2 simulator found! Aborting."
