@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -30,21 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6CD8CE842D50267E000A0764 /* lifehub */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = lifehub;
-			sourceTree = "<group>";
-		};
-		6CD8CE972D50267F000A0764 /* lifehubTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = lifehubTests;
-			sourceTree = "<group>";
-		};
-		6CD8CEA12D50267F000A0764 /* lifehubUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = lifehubUITests;
-			sourceTree = "<group>";
-		};
+		6CD8CE842D50267E000A0764 /* lifehub */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = lifehub; sourceTree = "<group>"; };
+		6CD8CE972D50267F000A0764 /* lifehubTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = lifehubTests; sourceTree = "<group>"; };
+		6CD8CEA12D50267F000A0764 /* lifehubUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = lifehubUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +175,7 @@
 				};
 			};
 			buildConfigurationList = 6CD8CE7D2D50267E000A0764 /* Build configuration list for PBXProject "lifehub" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -195,7 +184,6 @@
 			);
 			mainGroup = 6CD8CE792D50267E000A0764;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 6CD8CE832D50267E000A0764 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
