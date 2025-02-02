@@ -1,0 +1,69 @@
+# Xcode project files
+*.xcuserstate
+*.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+*.xcresult
+
+# Swift Package Manager
+/.swiftpm/
+Package.resolved
+
+# Carthage
+/Carthage/
+
+# CocoaPods
+/.cocoapods/
+Pods/
+Podfile.lock
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/readme.md
+
+# Ignore temporary files
+*.swp
+*.swo
+*.DS_Store
+*.lock
+*.log
+
+# GitHub Actions CI cache
+/.github/workflows/cache/
+
+# Ignore SwiftData / CoreData generated files
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# CloudKit Sync Metadata (if CloudKit is enabled)
+*.ckAssetMetadata
+
+# Ignore environment files & secrets
+.env
+.env.local
+.env.production
+*.key
+*.pem
+
+# Ignore Xcode shared data (user-specific settings)
+*.xcscmblueprint
+*.xccheckout
+
+# Ignore Swift Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Ignore generated docs (if using DocC)
+*.doccarchive
+*.doccworkspace
+
+# Ignore Firebase or GoogleService files (if used)
+GoogleService-Info.plist
+
+# Ignore test result snapshots
+__Snapshots__/
