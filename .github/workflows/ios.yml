@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test using iOS 18.x Simulator
+    name: Build and Test using iPhone 16 (iOS 18.2) Simulator
     runs-on: macos-14  # Ensures Xcode 16.2 compatibility
 
     steps:
@@ -18,7 +18,7 @@ jobs:
       - name: Set Xcode Version
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Install iOS 18.x Simulator (If Needed)
+      - name: Install iOS 18.2 Simulator (If Needed)
         run: sudo xcodebuild -downloadPlatform iOS || echo "Skipping, already installed"
 
       - name: List Available Simulators
@@ -32,21 +32,21 @@ jobs:
           echo "Using default scheme: $default"
           echo $default > default_scheme.txt
 
-      - name: Find iOS 18.x Simulator
+      - name: Find iPhone 16 (iOS 18.2) Simulator
         run: |
-          echo "Looking for an iOS 18.x simulator..."
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone [0-9A-Za-z ]+ \([0-9\.]+\)' | grep '18\.' | head -1 | awk -F '[()]' '{print $1}')
-          
-          if [ -z "$device" ]; then
-            echo "❌ No compatible iOS 18.x simulator found! Aborting."
+          echo "Looking for iPhone 16 (iOS 18.2) simulator..."
+          device_id="6F846BFB-BC07-430E-9D79-D6C1569E14D9"
+
+          if [ -z "$device_id" ]; then
+            echo "❌ No compatible iOS 18.2 simulator found! Aborting."
             exit 1
           fi
           
-          echo "✅ Selected Simulator: $device"
-          echo $device > selected_simulator.txt
+          echo "✅ Selected Simulator: iPhone 16 ($device_id)"
+          echo $device_id > selected_simulator.txt
           
           # Ensure the simulator is booted
-          xcrun simctl boot "$device" || echo "Skipping boot if already running"
+          xcrun simctl boot "$device_id" || echo "Skipping boot if already running"
 
       - name: Build
         env:
@@ -57,7 +57,7 @@ jobs:
           file_to_build=$(ls -A | grep -iE '\.xcworkspace$|\.xcodeproj$' | head -1)
 
           echo "Building for simulator: $device"
-          xcodebuild build-for-testing -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,name=$device,OS=18.0" | xcpretty
+          xcodebuild build-for-testing -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,id=$device,OS=18.2" | xcpretty
 
       - name: Test
         env:
@@ -68,4 +68,4 @@ jobs:
           file_to_build=$(ls -A | grep -iE '\.xcworkspace$|\.xcodeproj$' | head -1)
 
           echo "Running tests on: $device"
-          xcodebuild test-without-building -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,name=$device,OS=18.0" | xcpretty
+          xcodebuild test-without-building -scheme "$scheme" -project "$file_to_build" -destination "platform=$platform,id=$device,OS=18.2" | xcpretty
